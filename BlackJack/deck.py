@@ -8,7 +8,8 @@ class Face_cards(Enum):
     JACK = 10
 
 class Card:
-    def __init__(self, color, suit, value):
+    def __init__(self, name, color, suit, value):
+        self.name = name 
         self.color = color
         self.value = value
         self.suit = suit
@@ -19,7 +20,6 @@ class Card:
         self.value = value 
     def set_suit(self, suit):
         self.suit = suit
-
 
 class Deck:
     def __init__(self, deck):
@@ -35,17 +35,31 @@ class Deck:
             for j in range(1, 14):
                 #Color the card 
                 if i == "Clubs" or i == "Spades":
-                    self.deck.append(Card(colors[1], i, j))
+                    self.deck.append(Card(j, colors[1], i, j))
                 else:
-                    self.deck.append(Card(colors[0], i, j))
+                    self.deck.append(Card(j, colors[0], i, j))
+                
                 count += 1
-
+            
+        for k in self.deck:
+            if k.value == 1:
+                k.name = Face_cards.ACE.name
+            elif k.value == 11:
+                k.name = Face_cards.JACK.name
+                k.value = 10
+            elif k.value == 12:
+                k.name = Face_cards.QUEEN.name
+                k.value = 10
+            elif k.value == 13:
+                k.name = Face_cards.KING.name
+                k.value = 10
+  
     def print_deck(self):
         count = 0
         for i in self.deck:
-            print(i.color, i.suit, i.value)
+            print(i.name, i.color, i.suit, i.value)
             count += 1
-        print(count)
+        print("Total number of Cards: ", count)
 
     def shuffle_deck(self):
         random.shuffle(self.deck)
@@ -54,13 +68,15 @@ class Deck:
     def standard_deck(self):
         for i in range(8):
             self.set_deck()
-    
-        
 
-empty_list = []
-d1 = Deck(empty_list)
-d1.standard_deck()
-d1.shuffle_deck()
-d1.print_deck()
+    def test_fiftytwo(self):
+        print("***52 CARD DECK***")
+        self.set_deck()
+        self.print_deck()
+        print("Now shuffled deck...")
+        self.shuffle_deck()
+        self.print_deck()
 
+d1 = Deck(list())
+d1.test_fiftytwo()
 
