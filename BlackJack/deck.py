@@ -22,8 +22,9 @@ class Card:
         self.suit = suit
 
 class Deck:
-    def __init__(self, deck):
+    def __init__(self, deck, discard):
         self.deck = [] #EMPTY LIST
+        self.discard =[]
 
     def set_deck(self):
         count = 0
@@ -53,7 +54,18 @@ class Deck:
             elif k.value == 13:
                 k.name = Face_cards.KING.name
                 k.value = 10
-  
+    
+    def discard_card(self, deck, idx):
+        card = deck.pop(idx)
+        self.discard.append(card)    
+
+    def print_discard(self):
+        count = 0
+        for i in self.discard:
+            print(i.name, i.color, i.suit, i.value)
+            count += 1
+        print("Total number of discarded cards: ", count)
+
     def print_deck(self):
         count = 0
         for i in self.deck:
@@ -77,6 +89,9 @@ class Deck:
         self.shuffle_deck()
         self.print_deck()
 
-d1 = Deck(list())
+    
+d1 = Deck(list(), list())
 d1.test_fiftytwo()
-
+d1.discard_card(d1.deck, 0)
+d1.discard_card(d1.deck, 1)
+d1.print_discard()
