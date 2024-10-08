@@ -57,7 +57,11 @@ class Deck:
     
     def discard_card(self, deck, idx):
         card = deck.pop(idx)
-        self.discard.append(card)    
+        self.discard.append(card)   
+
+    def discard_to_deck(self, deck, discard):
+        for i in range(len(discard)):
+            deck.append(discard.pop(0))
 
     def print_discard(self):
         count = 0
@@ -90,8 +94,11 @@ class Deck:
         self.print_deck()
 
     
-d1 = Deck(list(), list())
-d1.test_fiftytwo()
-d1.discard_card(d1.deck, 0)
-d1.discard_card(d1.deck, 1)
-d1.print_discard()
+#d1 = Deck(list(), list())
+#d1.test_fiftytwo()
+#d1.discard_card(d1.deck, 0)
+#d1.discard_card(d1.deck, 0)
+#d1.print_discard()
+#d1.discard_to_deck(d1.deck, d1.discard)
+#d1.print_deck()
+#d1.print_discard()
