@@ -55,10 +55,18 @@ class Deck:
                 k.name = Face_cards.KING.name
                 k.value = 10
     
-    def discard_card(self, deck, idx):
-        card = deck.pop(idx)
-        self.discard.append(card)   
-
+    def get_card(self):
+        card = self.deck.pop(0)
+        return card 
+    
+    def discard_card(self, lst, idx):
+        try:
+            card = lst.pop(idx)
+            self.discard.append(card)   
+        except IndexError:
+            print("Invalid card index. No card at that position to discard.")
+        
+    
     def discard_to_deck(self, deck, discard):
         for i in range(len(discard)):
             deck.append(discard.pop(0))
