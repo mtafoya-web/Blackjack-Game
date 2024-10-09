@@ -42,6 +42,10 @@ def free_bet(deck, table):
     #Print first two cards
     table.print_all_player_cards()
 
+    #Check for ratural blackjack for the dealer
+    sum = rules.BlackJackRules.get_sum(table.position["Dealer"][0].value, table.position["Dealer"][1].value)
+    rules.BlackJackRules.check_natural_bj(sum, "Dealer", table.position["Dealer"])
+    table.position["Count"].append(sum)
 
     #check for natural blackjack
     for i in range(num_players):     
@@ -51,6 +55,7 @@ def free_bet(deck, table):
         table.position["Count"].append(sum)
 
     
+    #
     print(table.position["Dealer"],"\n ", table.position[1], "\n ", table.position[2], "\n ", table.position[3], "\n ", table.position[4], "\n ", table.position[5] ,"\n ", table.position[6], "\n ", table.position[7], "\n ", table.position["Count"])
     
 
